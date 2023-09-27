@@ -25,6 +25,10 @@ Please note that `S` and `F` can only appear once in the grid.
 
 In the Improvisor file, the Pathcounter object is used. This modela the pathfinding problem using Z3, which results in the generation of a CNF (Conjunctive Normal Form) representation in DIMACS format. This CNF is then given to ApproxMC for performing approximate model counting.
 
+<p align="center">
+  <img src="./img/improvisor-scheme.jpg" alt="Flow scheme"/>
+</p>
+
 ![Flow scheme](./img/improvisor-scheme.jpg)
 
 ## Usage
