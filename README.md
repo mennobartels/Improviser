@@ -40,6 +40,7 @@ When cloning the repository, there are two primary ways to use the code: via Doc
 This command provides an interactive session within the container.
 
 Inside the container, run the example:
+
 ```python Example.py```
 
 You can also use the nano text editor within the container to modify the example or grid. If the grid changes, adjust the input for the number of steps and lambda accordingly.
