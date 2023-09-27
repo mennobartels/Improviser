@@ -30,8 +30,11 @@ When cloning the repository, there are two primary ways to use the code: via Doc
 ### Docker
 
 1. Build the Docker image with the following command:
+
 ```docker build -t improviser-image .```
+
 2. Run the Docker container with the following command:
+
 ```docker run -it --rm improviser-image /bin/bash```
 
 This command provides an interactive session within the container.
