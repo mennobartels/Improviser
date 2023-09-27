@@ -1,46 +1,63 @@
 # Improvisor
-A path improvisor using ApproxMC and Z3. Created for my research internship
 
-# Description
-This repository contains the files for an improvisor that finds a path using the approximate model counter ApproxMC. 
-In the file Example.py a basic usage can be found. 
+**Improvisor** is a pathfinding tool that utilizes the ApproxMC and Z3 libraries. This project was developed as part of a research internship. It allows you to discover a path using the Approximate Model Counter (ApproxMC) algorithm. Below, you'll find details on how to use this tool and an overview of its main features.
 
-The Improvisor class has the following arguments
+## Description
 
-csv -- the input file as a csv
-steps -- the amount of steps the improvisor may take
-lam -- the lambda used, 0 if uninitialized 
-eps -- epsilon used, 0.8 if uninitialized
-show -- boolean for printing out intermediate results, False if uninitialized
+The repository contains files for the Improvisor, which can find paths using the ApproxMC algorithm. In the `Example.py` file, you can find a basic example of how to use it.
 
-Some remarks:
-The csv file has the following format:
-0 is an open square
-S is the start square
-F is the finishing square
-W is a wall/obstacle
-Note that S and F can only occur once
+The `Improvisor` class accepts the following arguments:
 
+- `csv` - the input file in CSV format.
+- `steps` - the number of steps the Improvisor may take.
+- `lam` - the lambda value used (set to 0 if uninitialized).
+- `eps` - the epsilon value used (set to 0.8 if uninitialized).
+- `show` - a boolean for printing out intermediate results (set to False if uninitialized).
 
+**CSV File Format:**
 
-# Usage 
-When cloning the repository, there are two main ways to use the code:
+- `0` represents an open square.
+- `S` marks the starting square.
+- `F` designates the finishing square.
+- `W` indicates a wall or obstacle.
+  
+Please note that `S` and `F` can only appear once in the grid.
 
-Docker:
-Build the image with 
-docker build -t improviser-image
+## Usage
 
-Run a container with 
-docker run -it -rm improvisor-image /bin/bash
+When cloning the repository, there are two primary ways to use the code: via Docker or locally.
 
-This gives an interactive session within the container that is running. Then an example can be ran with
-python Example.py
+### Docker
 
-This example can be altered by using nano which is installed in the container. Also nano can be used to alter the grid for the example. Note that if the grid changes, the input for the amoutn of steps and lambda would have to change. 
+1. Build the Docker image with the following command:
 
-When running the container, the animations will nog be available as the container only gives a command line. 
+   ```bash
+   docker build -t improviser-image .
 
-Local:
-To run the files locally it is advised to start up a venv and install the rights packages with the requirements.txt file. Then the Example.py file can be ran in the venv as normal. 
+    Run a container with an interactive session:
 
-Locally the Example_with_animation.py file will also work, and will save animations as mp4's.
+    bash
+
+docker run -it --rm improviser-image /bin/bash
+
+This command provides an interactive session within the container.
+
+Inside the container, run the example:
+
+bash
+
+    python Example.py
+
+    You can also use the nano text editor within the container to modify the example or grid. If the grid changes, adjust the input for the number of steps and lambda accordingly.
+
+Please note that animations are not available when running the container, as it provides a command-line interface only.
+Local
+
+To run the files locally, it is recommended to set up a virtual environment (venv) and install the required packages from the requirements.txt file. Then, execute Example.py within the virtual environment as usual.
+
+Additionally, you can use Example_with_animation.py locally, which will save animations as MP4 files.
+
+Feel free to explore and adapt the Improvisor tool to suit your pathfinding needs!
+
+Enjoy pathfinding with Improvisor!
+
