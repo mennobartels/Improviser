@@ -30,16 +30,14 @@ When cloning the repository, there are two primary ways to use the code: via Doc
 ### Docker
 
 1. Build the Docker image with the following command:
-
-   ```bash
-   docker build -t improviser-image .
-   docker run -it --rm improviser-image /bin/bash
+``docker build -t improviser-image .``
+2. Run the Docker container with the following command:
+``docker run -it --rm improviser-image /bin/bash``
 
 This command provides an interactive session within the container.
 
 Inside the container, run the example:
-
-    python Example.py
+``python Example.py``
 
 You can also use the nano text editor within the container to modify the example or grid. If the grid changes, adjust the input for the number of steps and lambda accordingly.
 
