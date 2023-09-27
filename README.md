@@ -33,25 +33,17 @@ When cloning the repository, there are two primary ways to use the code: via Doc
 
    ```bash
    docker build -t improviser-image .
-
-    Run a container with an interactive session:
-
-    bash
-
-docker run -it --rm improviser-image /bin/bash
+   docker run -it --rm improviser-image /bin/bash
 
 This command provides an interactive session within the container.
 
 Inside the container, run the example:
 
-bash
-
     python Example.py
 
-    You can also use the nano text editor within the container to modify the example or grid. If the grid changes, adjust the input for the number of steps and lambda accordingly.
+You can also use the nano text editor within the container to modify the example or grid. If the grid changes, adjust the input for the number of steps and lambda accordingly.
 
 Please note that animations are not available when running the container, as it provides a command-line interface only.
-Local
 
 To run the files locally, it is recommended to set up a virtual environment (venv) and install the required packages from the requirements.txt file. Then, execute Example.py within the virtual environment as usual.
 
