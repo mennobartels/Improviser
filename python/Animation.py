@@ -80,7 +80,7 @@ class PathAnimator:
 
             for i, (x, y) in enumerate(path[:step]):
                 if i == step - 1:
-                    grid[x, y] = 3 # Highlight the latest square in red
+                    grid[x, y] = 3 # Highlight the latest step in red
                 else:
                     grid[x, y] = 1  # Keep the rest of the squares in black
 

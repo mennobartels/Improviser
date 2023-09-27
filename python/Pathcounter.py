@@ -1,6 +1,5 @@
 from z3 import *
 
-
 class PathCounter:
     def __init__(
         self, size_x, size_y, obstacles, steps, start_x, start_y, finish_x, finish_y

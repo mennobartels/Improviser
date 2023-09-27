@@ -2,8 +2,6 @@ from Pathcounter import *
 from pyapproxmc import Counter
 import random
 import csv
-import math
-
 
 def approxmc_count_projected(dimacs, eps):
     s = Counter(epsilon=eps)
@@ -221,19 +219,10 @@ class Improvisor:
                 elif self.show:
                     print("up: Obstacle")
 
-            min_total_paths = r_min + d_min + l_min + u_min
-            max_total_paths = r_max + d_max + l_max + u_max
-
-            maxes = [(r_min/(r_min + d_max + l_max + u_max)),
-                     (d_min/(r_max + d_min + l_max + u_max)),
-                     (l_min/(r_max + d_max + l_min + u_max)),
-                     (u_min/(r_max + d_max + l_max + u_min))]
-            max_lams = []
-            for i in maxes:
-                if i != 0:
-                    max_lams.append(i)
-
-            max_lam = min(max_lams)
+            if total_paths <= 0:
+                print("Too few steps")
+                break
+            
             if self.show:
                 print("total paths: {}".format(total_paths))
                 print("epsilon: current_eps = {}, eps = {}".format(self.current_eps, self.eps))
@@ -246,20 +235,6 @@ class Improvisor:
             
             if paths_right:
                 prob_right = paths_right / total_paths
-
-                # print("-------------right-----------------")
-                # print("r min {}".format(r_min))
-                # print("d max {}".format(d_max))
-                # print("u max {}".format(u_max))
-                # print("l max {}".format(l_max))
-                # # print((r_min/(r_min + d_max + l_max + u_max)))
-                # print(prob_right) 
-                # print("r max {}".format(r_max))
-                # print("d min {}".format(d_min))
-                # print("u min {}".format(u_min))
-                # print("l min {}".format(l_min))
-                # print((r_max/(r_max + d_min + l_min + u_min)))
-                # print("------------------------------")
 
                 if self.lam > (r_max/(r_max + d_min + l_min + u_min)):
                     if self.show:
@@ -281,12 +256,6 @@ class Improvisor:
             if paths_down:
                 prob_down = paths_down / total_paths
 
-                # print("-------------down-----------------")
-                # # print((d_min/(r_max + d_min + l_max + u_max)))
-                # print(prob_down) 
-                # # print((d_max/(r_min + d_max + l_min + u_min)))
-                # print("------------------------------")
-
                 if self.lam > (d_max/(r_min + d_max + l_min + u_min)):
                     if self.show:
                         print("No improvisor down")
@@ -307,13 +276,6 @@ class Improvisor:
             if paths_left:
                 prob_left = paths_left / total_paths
 
-                # print("-------------left-----------------")
-                # print((l_min/(r_max + d_max + l_min + u_max)))
-                # print(self.lam) 
-                # print((l_max/(r_min + d_min + l_max + u_min)))
-                # print("------------------------------")
-
-
                 if self.lam > (l_max/(r_min + d_min + l_max + u_min)):
                     if self.show:
                         print("No improvisor left")
@@ -333,12 +295,6 @@ class Improvisor:
 
             if paths_up:
                 prob_up = paths_up / total_paths
-
-                # print("-------------left-----------------")
-                # # print((u_min/(r_max + d_max + l_max + u_min)))
-                # print(prob_up) 
-                # # print((u_max/(r_min + d_min + l_min + u_max)))
-                # print("------------------------------")
 
                 if self.lam > (u_max/(r_min + d_min + l_min + u_max)):
                     if self.show:
