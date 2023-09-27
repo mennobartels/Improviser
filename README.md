@@ -1,6 +1,6 @@
 # Improvisor
 
-**Improvisor** is a pathfinding tool that utilizes the ApproxMC and Z3 libraries. This project was developed as part of a research internship. It allows you to discover a path using the Approximate Model Counter [(ApproxMC)](https://github.com/meelgroup/approxmc/tree/master) algorithm. Below, you'll find details on how to use this tool and an overview of its main features.
+**Improvisor** is a pathfinding tool that utilizes the ApproxMC and Z3 libraries. This project was developed as part of a research internship at Radboud University with Sebastian junges. It allows you to discover a path using the Approximate Model Counter [(ApproxMC)](https://github.com/meelgroup/approxmc/tree/master) algorithm. Below, you'll find details on how to use this tool and an overview of its main features.
 
 ## Description
 
@@ -22,6 +22,8 @@ The `Improvisor` class accepts the following arguments:
 - `W` indicates a wall or obstacle.
   
 Please note that `S` and `F` can only appear once in the grid.
+
+In the Improvisor file, the Pathcounter object is used. This modela the pathfinding problem using Z3, which results in the generation of a CNF (Conjunctive Normal Form) representation in DIMACS format. This CNF is then given to ApproxMC for performing approximate model counting.
 
 ## Usage
 
