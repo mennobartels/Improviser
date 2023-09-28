@@ -61,9 +61,3 @@ Please note that animations are not available when running the container, as it 
 To run the files locally, it is recommended to set up a virtual environment (venv) and install the required packages from the requirements.txt file. Then, execute Example.py within the virtual environment as usual.
 
 Additionally, you can use Example_with_animation.py locally, which will save animations as MP4 files.
-
-
-Feel free to explore and adapt the Improvisor tool to suit your pathfinding needs!
-
-Enjoy pathfinding with Improvisor!
-
