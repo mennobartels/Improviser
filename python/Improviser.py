@@ -73,7 +73,7 @@ def scale_weights(weights):
     return scaled_weights
 
 
-class Improvisor:
+class Improviser:
     def __init__(self, csv, steps, lam=0, eps=0.8, show=False):
         grid_info = parse_csv(csv)
 
@@ -134,7 +134,7 @@ class Improvisor:
 
                     paths_right, r_min, r_max = approxmc_count_projected(dimacs, self.current_eps)
                     if self.show:
-                        print("right: {}".format(paths_right))
+                        print("right:{}, [{},{}]".format(paths_right, r_min, r_max))
                     if paths_right:
                         total_paths += paths_right
                         next_locs.append("r")
@@ -160,7 +160,7 @@ class Improvisor:
 
                     paths_down, d_min, d_max  = approxmc_count_projected(dimacs, self.current_eps)
                     if self.show:
-                        print("down: {}".format(paths_down))
+                        print("down: {}, [{},{}]".format(paths_down, d_min, d_max))
                     if paths_down:
                         total_paths += paths_down
                         next_locs.append("d")
@@ -186,7 +186,7 @@ class Improvisor:
 
                     paths_left, l_min, l_max  = approxmc_count_projected(dimacs, self.current_eps)
                     if self.show:
-                        print("left: {}".format(paths_left))
+                        print("left: {}, [{},{}]".format(paths_left, l_min, l_max))
                     if paths_left:
                         total_paths += paths_left
                         next_locs.append("l")
@@ -212,7 +212,7 @@ class Improvisor:
 
                     paths_up, u_min, u_max = approxmc_count_projected(dimacs, self.current_eps)
                     if self.show:
-                        print("up: {}".format(paths_up))
+                        print("up: {}, [{},{}]".format(paths_up, u_min, u_max))
                     if paths_up:
                         total_paths += paths_up
                         next_locs.append("u")
@@ -225,12 +225,12 @@ class Improvisor:
             
             if self.show:
                 print("total paths: {}".format(total_paths))
-                print("epsilon: current_eps = {}, eps = {}".format(self.current_eps, self.eps))
+                print("epsilon: = {}".format(self.current_eps))
 
-                print("for this eps lambda should be: \nlam < {}".format(1 / total_paths))
+                print("lambda should be < {}".format(1 / total_paths))
 
             if self.lam > 1 / total_paths:
-                print("No improvisor possible")
+                print("No improviser possible")
                 break
             
             if paths_right:
@@ -238,16 +238,16 @@ class Improvisor:
 
                 if self.lam > (r_max/(r_max + d_min + l_min + u_min)):
                     if self.show:
-                        print("No improvisor right")
+                        print("No improviser right")
                     next_locs.remove("r")
                 elif (r_min/(r_min + d_max + l_max + u_max)) <= self.lam and self.lam <= (r_max/(r_max + d_min + l_min + u_min)):
                     if self.current_eps < 0.01:
                         if self.show:
-                            print("No improvisor found right")
+                            print("No improviser found right")
                         next_locs.remove("r")
                     else:
                         if self.show:
-                            print("Uncertain about improvisor right, make eps smaller")
+                            print("Uncertain about improviser right, make eps smaller\n")
                         self.current_eps /= 2
                         continue
                 else:
@@ -258,16 +258,16 @@ class Improvisor:
 
                 if self.lam > (d_max/(r_min + d_max + l_min + u_min)):
                     if self.show:
-                        print("No improvisor down")
+                        print("No improviser down")
                     next_locs.remove("d")
                 elif (d_min/(r_max + d_min + l_max + u_max)) <= self.lam and self.lam <= (d_max/(r_min + d_max + l_min + u_min)):
                     if self.current_eps < 0.01:
                         if self.show:
-                            print("No improvisor found down")
+                            print("No improviser found down")
                         next_locs.remove("d")
                     else:
                         if self.show:
-                            print("Uncertain about improvisor down, make eps smaller")
+                            print("Uncertain about improviser down, make eps smaller\n")
                         self.current_eps /= 2
                         continue
                 else:
@@ -278,16 +278,16 @@ class Improvisor:
 
                 if self.lam > (l_max/(r_min + d_min + l_max + u_min)):
                     if self.show:
-                        print("No improvisor left")
+                        print("No improviser left")
                     next_locs.remove("l")
                 elif (l_min/(r_max + d_max + l_min + u_max)) <= self.lam and self.lam <= (l_max/(r_min + d_min + l_max + u_min)):
                     if self.current_eps < 0.01:
                         if self.show:
-                            print("No improvisor found left")
+                            print("No improviser found left")
                         next_locs.remove("l")
                     else:
                         if self.show:
-                            print("Uncertain about improvisor left, make eps smaller")
+                            print("Uncertain about improviser left, make eps smaller\n")
                         self.current_eps /= 2
                         continue
                 else:
@@ -295,19 +295,19 @@ class Improvisor:
 
             if paths_up:
                 prob_up = paths_up / total_paths
-
+    
                 if self.lam > (u_max/(r_min + d_min + l_min + u_max)):
                     if self.show:
-                        print("No improvisor up")
+                        print("No improviser up")
                     next_locs.remove("u")
                 elif (u_min/(r_max + d_max + l_max + u_min)) <= self.lam and self.lam <= (u_max/(r_min + d_min + l_min + u_max)):
                     if self.current_eps < 0.01:
                         if self.show:
-                            print("No improvisor found up")
+                            print("No improviser found up")
                         next_locs.remove("u")
                     else:
                         if self.show:
-                            print("Uncertain about improvisor up, make eps smaller")
+                            print("Uncertain about improviser up, make eps smaller\n")
                         self.current_eps /= 2
                         continue
                 else:
@@ -328,7 +328,7 @@ class Improvisor:
                 self.current_steps -= 1
                 if self.show:
                     print(
-                        "chose right at step {}".format(
+                        "chose right at step {}\n".format(
                             self.total_steps - self.current_steps - 1
                         )
                     )
@@ -340,7 +340,7 @@ class Improvisor:
                 self.current_steps -= 1
                 if self.show:
                     print(
-                        "chose down at step {}".format(
+                        "chose down at step {}\n".format(
                             self.total_steps - self.current_steps - 1
                         )
                     )
@@ -352,7 +352,7 @@ class Improvisor:
                 self.current_steps -= 1
                 if self.show:
                     print(
-                        "chose left at step {}".format(
+                        "chose left at step {}\n".format(
                             self.total_steps - self.current_steps - 1
                         )
                     )
@@ -364,7 +364,7 @@ class Improvisor:
                 self.current_steps -= 1
                 if self.show:
                     print(
-                        "chose up at step {}".format(
+                        "chose up at step {}\n".format(
                             self.total_steps - self.current_steps - 1
                         )
                     )
@@ -385,7 +385,7 @@ class Improvisor:
         print(self.path)
         
         if len(next_locs) == 0:
-            print("No improvisor found")
+            print("No improviser found")
 
 
 def grid_with_path(imp):

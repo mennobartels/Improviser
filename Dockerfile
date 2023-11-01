@@ -2,7 +2,7 @@ FROM python:latest
 WORKDIR /usr/app/src
 
 # Copy your application code
-COPY ./python/Improvisor.py ./
+COPY ./python/Improviser.py ./
 COPY ./python/Pathcounter.py ./
 COPY ./python/Example.py ./
 COPY ./grid.csv ./

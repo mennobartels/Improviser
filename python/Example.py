@@ -1,7 +1,7 @@
-from Improvisor import *
+from Improviser import *
 
-# Improvisor(csv, steps, lam=0, show=False
-imp = Improvisor("./grid.csv",5 , lam=0.007, eps=1, show=False)
+# Improviser(csv, steps, lam=0, show=False
+imp = Improviser("./grid.csv", 6 , lam=0.001, eps=1, show=False)
 imp.improvise()
 output = grid_with_path(imp)
 print(output)
